@@ -3,7 +3,7 @@
 
 local keymap = vim.api.nvim_set_keymap
 keymap('n', '<C-w>', ':w<CR>', {})
-keymap('i', '<C-w>', '<ESC>:w<CR>a', {})
+keymap('i', '<C-w>', '<ESC>:w<CR>', {})
 keymap('n', '<C-q>', ':q<CR>', {})
 keymap('n', '<C-u>', ':u<CR>', {})
 keymap('i', '<C-u>', '<ESC>:u<CR>a', {})
@@ -24,4 +24,3 @@ keymap('n', '<leader>rn', ':lua vim.lsp.buf.rename()<cr>', {})
 keymap('n', '<C-f>', ':Neotree right toggle<CR>', {})
 keymap('i', '<C-f>', ':Neotree right toggle<CR>', {})
 keymap('n', '<S-f>', ':Neotree float toggle<CR>', {})
-keymap('i', '<S-f>', ':Neotree float toggle<CR>', {})

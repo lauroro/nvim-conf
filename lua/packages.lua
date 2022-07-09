@@ -1,10 +1,12 @@
 require('packer').startup(function()
     use 'wbthomason/packer.nvim'
-    use({'catppuccin/nvim', as = 'catppuccin'})
-    use {'goolord/alpha-nvim',
+
+    use({ 'catppuccin/nvim', as = 'catppuccin' })
+
+    use { 'goolord/alpha-nvim',
         requires = { 'kyazdani42/nvim-web-devicons' },
-        config = function ()
-            require'alpha'.setup(require'alpha.themes.startify'.opts)
+        config = function()
+            require 'alpha'.setup(require 'alpha.themes.startify'.opts)
             local startify = require("alpha.themes.startify")
             startify.section.mru_cwd.val = { { type = "padding", val = 0 } }
             startify.section.bottom_buttons.val = {
@@ -13,20 +15,14 @@ require('packer').startup(function()
                 startify.button("q", "quit nvim", ":qa<cr>"),
             }
         end
-    }
-    use 'nvim-treesitter/nvim-treesitter'
-    use 'neovim/nvim-lspconfig'
-    use 'williamboman/nvim-lsp-installer'
-    use 'hrsh7th/cmp-nvim-lsp'
-    use 'hrsh7th/cmp-buffer'
-    use 'hrsh7th/cmp-path'
-    use 'hrsh7th/cmp-cmdline'
-    use 'hrsh7th/nvim-cmp'
-    use 'hrsh7th/cmp-vsnip'
-    use 'hrsh7th/vim-vsnip'
-    use {'akinsho/bufferline.nvim',
-        requires = 'kyazdani42/nvim-web-devicons'}
+    }    
+
+    use { 'akinsho/bufferline.nvim',
+        requires = 'kyazdani42/nvim-web-devicons' }
+
     vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+    
+
     use {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v2.x",
@@ -36,7 +32,25 @@ require('packer').startup(function()
             "MunifTanjim/nui.nvim",
         }
     }
-    use {'nvim-lualine/lualine.nvim',
+
+    use { 'nvim-lualine/lualine.nvim',
         requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
+
+    use 'nvim-treesitter/nvim-treesitter'
+
+    use 'neovim/nvim-lspconfig'
+    use 'williamboman/nvim-lsp-installer'
+
+    use 'hrsh7th/cmp-nvim-lsp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-cmdline'
+    use 'hrsh7th/nvim-cmp'
+
+    use 'hrsh7th/cmp-vsnip'
+    use 'hrsh7th/vim-vsnip'
+
+
 end)

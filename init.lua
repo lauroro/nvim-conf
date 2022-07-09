@@ -1,7 +1,7 @@
 -- ----- REQUIREMENTS -----
 --  a nerd font, enabled in terminal or whatever
 --  packer:           yay -S nvim-packer-git
---  xclip:            yay -S xclip  
+--  xclip:            yay -S xclip
 --  git, curl or wget, unzip, tar, gzip, npm
 
 
@@ -17,7 +17,7 @@ require('config')
 local catppuccin = require("catppuccin")
 catppuccin.setup()
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-vim.cmd[[colorscheme catppuccin]]
+vim.cmd [[colorscheme catppuccin]]
 
 
 
@@ -26,44 +26,21 @@ vim.cmd[[colorscheme catppuccin]]
 vim.opt.termguicolors = true
 --require("bufferline").setup{}
 require('bufferline').setup {
-  options = {
-    mode = "buffers",
-    numbers = "ordinal",
-    diagnostics = "nvim_lsp",
+    options = {
+        mode = "buffers",
+        numbers = "ordinal",
+        diagnostics = "nvim_lsp",
     }
 }
 
 
 
-
+-- LUALINE
 require('lualine').setup {
     options = {
         icons_enabled = true,
         theme = 'auto',
-        component_separators = { left = '', right = ''},
-        section_separators = { left = '', right = ''},
-        disabled_filetypes = {},
-        always_divide_middle = true,
-        globalstatus = false,
     },
-    sections = {
-        lualine_a = {'mode'},
-        lualine_b = {'branch', 'diff', 'diagnostics'},
-        lualine_c = {'filename'},
-        lualine_x = {'encoding', 'fileformat', 'filetype'},
-        lualine_y = {'progress'},
-        lualine_z = {'location'}
-    },
-    inactive_sections = {
-        lualine_a = {},
-        lualine_b = {},
-        lualine_c = {'filename'},
-        lualine_x = {'location'},
-        lualine_y = {},
-        lualine_z = {}
-    },
-    tabline = {},
-    extensions = {},
     theme = "catppuccin"
 }
 
@@ -93,18 +70,18 @@ require("neo-tree").setup({
 
 
 -- TREESITTER
-require'nvim-treesitter.configs'.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = {"c", "cpp", "python", "html", "javascript", "css",
-  			        "php", "lua", "rust", "java"},
+require 'nvim-treesitter.configs'.setup {
+    -- A list of parser names, or "all"
+    ensure_installed = { "c", "cpp", "python", "html", "javascript", "css",
+        "php", "lua", "rust", "java" },
 
-  highlight = {
-    -- `false` will disable the whole extension
-    enable = true,
-  },
-  indent = {
-    enable = true,
-  }
+    highlight = {
+        -- `false` will disable the whole extension
+        enable = true,
+    },
+    indent = {
+        enable = true,
+    }
 }
 --vim.opt.foldmethod = "expr"
 --vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
@@ -112,33 +89,8 @@ require'nvim-treesitter.configs'.setup {
 
 
 
--- NVIM-LSP-INSTALLER
--- install a language server (e.g. for lua) with :LSPInstall lua
--- check williamboman/nvim-lsp-installer for commands and available LSPs
--- :LspInstallInfo - opens a graphical overview of your language servers
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-    local opts = {}
-    -- fix 'undefined global' on neovim lua files
-    if server.name == "sumneko_lua" then
-        opts = {
-            settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = { 'vim', 'use' }
-                    },
-                }
-            }
-        }
-    end
-    server:setup(opts)
-end)
-
-
-
-
 -- NVIM-CMP
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 cmp.setup({
     snippet = {
@@ -156,8 +108,8 @@ cmp.setup({
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
     }, {
-            { name = 'buffer' },
-        })
+        { name = 'buffer' },
+    })
 })
 
 cmp.setup.cmdline('/', {
@@ -172,12 +124,38 @@ cmp.setup.cmdline(':', {
     sources = cmp.config.sources({
         { name = 'path' }
     }, {
-            { name = 'cmdline' }
+        { name = 'cmdline' }
         })
 })
 
--- for lspconfig.
+
+
+
+
+-- LSPCONFIG
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['sumneko_lua, clangd, pyright, html, eslint, cssls, intelephense'].setup {
+require('lspconfig')['sumneko_lua, clangd, pyright, html, quick_lint_js, cssls, intelephense'].setup {
     capabilities = capabilities
 }
+
+
+
+
+-- NVIM-LSP-INSTALLER
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.on_server_ready(function(server)
+    local opts = {}
+    -- fix 'undefined global' on neovim lua files
+    if server.name == "sumneko_lua" then
+        opts = {
+            settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = { 'vim', 'use' }
+                    },
+                }
+            }
+        }
+    end
+    server:setup(opts)
+end)
