@@ -2,7 +2,9 @@
 --  a nerd font, enabled in terminal or whatever
 --  packer:           yay -S nvim-packer-git
 --  xclip:            yay -S xclip
---  git, curl or wget, unzip, tar, gzip, npm
+--  git, curl or wget, unzip, tar, gzip, npm 
+--  https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
+
 
 
 require('keybindings')
@@ -14,24 +16,43 @@ require('config')
 
 -- Cattpuccin
 local catppuccin = require("catppuccin")
-catppuccin.setup()
+catppuccin.setup{
+  integrations = {
+    treesitter = true,
+    native_lsp = {
+      enabled = true,
+      virtual_text = {
+        errors = "italic",
+        hints = "italic",
+        warnings = "italic",
+        information = "italic",
+      },
+      underlines = {
+        errors = "underline",
+        hints = "underline",
+        warnings = "underline",
+        information = "underline",
+      },
+    },
+    telescope = false,
+    neotree = {
+      enabled = false,
+      show_root = true,
+      transparent_panel = false,
+    },
+  }
+}
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
 vim.cmd [[colorscheme catppuccin]]
 
 
 
 
--- BUFFERLINE
-vim.opt.termguicolors = true
---require("bufferline").setup{}
-require('bufferline').setup {
-  options = {
-    mode = "buffers",
-    numbers = "ordinal",
-    diagnostics = "nvim_lsp",
-  }
+-- BARBAR
+require'bufferline'.setup {
+  animation = true,
+  auto_hide = true,
 }
-
 
 
 -- LUALINE
@@ -64,6 +85,11 @@ require("neo-tree").setup({
     }
   },
 })
+
+
+
+-- TELESCOPE
+require('telescope').setup{}
 
 
 
@@ -130,31 +156,41 @@ cmp.setup.cmdline(':', {
 
 
 
-
--- LSPCONFIG
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-require('lspconfig')['sumneko_lua, clangd, pyright, html, quick_lint_js, cssls, intelephense'].setup {
-  capabilities = capabilities
+-- NVIM-LSP-INSTALLER
+local lsp_installer = require("nvim-lsp-installer")
+lsp_installer.setup{
+  automatic_installation = true
 }
 
 
 
 
--- NVIM-LSP-INSTALLER
-local lsp_installer = require("nvim-lsp-installer")
-lsp_installer.on_server_ready(function(server)
-  local opts = {}
-  -- fix 'undefined global' on neovim lua files
-  if server.name == "sumneko_lua" then
-    opts = {
+-- LSPCONFIG
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lspconfig = require("lspconfig")
+lspconfig.util.default_config = vim.tbl_extend(
+  "force",
+  lspconfig.util.default_config,
+  {
+    on_attach = on_attach
+  }
+)
+for _, server in ipairs(lsp_installer.get_installed_servers()) do
+  if (server.name == "sumneko_lua") then
+    lspconfig["sumneko_lua"].setup{
+      capabilities = capabilities,
       settings = {
         Lua = {
           diagnostics = {
             globals = { 'vim', 'use' }
-          },
+          }
         }
       }
     }
+
+  else  
+    lspconfig[server.name].setup {
+      capabilities = capabilities;
+    }
   end
-  server:setup(opts)
-end)
+end

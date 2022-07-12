@@ -70,15 +70,15 @@ time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
   ["alpha-nvim"] = {
-    config = { "\27LJ\2\nŠ\3\0\0\b\0\20\1)6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\1\5\0009\1\6\0014\2\3\0005\3\b\0>\3\1\2=\2\a\0019\1\5\0009\1\t\0014\2\4\0009\3\n\0'\5\v\0'\6\f\0'\a\r\0B\3\4\2>\3\1\0029\3\n\0'\5\14\0'\6\15\0'\a\16\0B\3\4\2>\3\2\0029\3\n\0'\5\17\0'\6\18\0'\a\19\0B\3\4\0?\3\0\0=\2\a\1K\0\1\0\f:qa<cr>\14quit nvim\6q#:e ~/.config/nvim/init.lua<cr>\18neovim config\6v :ene <bar> startinsert <cr>\rnew file\6e\vbutton\19bottom_buttons\1\0\2\ttype\fpadding\bval\3\0\bval\fmru_cwd\fsection\topts\26alpha.themes.startify\nsetup\nalpha\frequire\a€€À™\4\0" },
+    config = { "\27LJ\2\nŠ\3\0\0\b\0\20\1)6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\1\5\0009\1\6\0014\2\3\0005\3\b\0>\3\1\2=\2\a\0019\1\5\0009\1\t\0014\2\4\0009\3\n\0'\5\v\0'\6\f\0'\a\r\0B\3\4\2>\3\1\0029\3\n\0'\5\14\0'\6\15\0'\a\16\0B\3\4\2>\3\2\0029\3\n\0'\5\17\0'\6\18\0'\a\19\0B\3\4\0?\3\0\0=\2\a\1K\0\1\0\f:qa<cr>\14quit nvim\6q#:e ~/.config/nvim/init.lua<cr>\18neovim config\6v :ene <bar> startinsert <cr>\rnew file\6e\vbutton\19bottom_buttons\1\0\2\bval\3\0\ttype\fpadding\bval\fmru_cwd\fsection\topts\26alpha.themes.startify\nsetup\nalpha\frequire\a€€À™\4\0" },
     loaded = true,
     path = "/home/lauro/.local/share/nvim/site/pack/packer/start/alpha-nvim",
     url = "https://github.com/goolord/alpha-nvim"
   },
-  ["bufferline.nvim"] = {
+  ["barbar.nvim"] = {
     loaded = true,
-    path = "/home/lauro/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
-    url = "https://github.com/akinsho/bufferline.nvim"
+    path = "/home/lauro/.local/share/nvim/site/pack/packer/start/barbar.nvim",
+    url = "https://github.com/romgrk/barbar.nvim"
   },
   catppuccin = {
     loaded = true,
@@ -160,6 +160,11 @@ _G.packer_plugins = {
     path = "/home/lauro/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/home/lauro/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
+  },
   ["vim-vsnip"] = {
     loaded = true,
     path = "/home/lauro/.local/share/nvim/site/pack/packer/start/vim-vsnip",
@@ -170,7 +175,7 @@ _G.packer_plugins = {
 time([[Defining packer_plugins]], false)
 -- Config for: alpha-nvim
 time([[Config for alpha-nvim]], true)
-try_loadstring("\27LJ\2\nŠ\3\0\0\b\0\20\1)6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\1\5\0009\1\6\0014\2\3\0005\3\b\0>\3\1\2=\2\a\0019\1\5\0009\1\t\0014\2\4\0009\3\n\0'\5\v\0'\6\f\0'\a\r\0B\3\4\2>\3\1\0029\3\n\0'\5\14\0'\6\15\0'\a\16\0B\3\4\2>\3\2\0029\3\n\0'\5\17\0'\6\18\0'\a\19\0B\3\4\0?\3\0\0=\2\a\1K\0\1\0\f:qa<cr>\14quit nvim\6q#:e ~/.config/nvim/init.lua<cr>\18neovim config\6v :ene <bar> startinsert <cr>\rnew file\6e\vbutton\19bottom_buttons\1\0\2\ttype\fpadding\bval\3\0\bval\fmru_cwd\fsection\topts\26alpha.themes.startify\nsetup\nalpha\frequire\a€€À™\4\0", "config", "alpha-nvim")
+try_loadstring("\27LJ\2\nŠ\3\0\0\b\0\20\1)6\0\0\0'\2\1\0B\0\2\0029\0\2\0006\2\0\0'\4\3\0B\2\2\0029\2\4\2B\0\2\0016\0\0\0'\2\3\0B\0\2\0029\1\5\0009\1\6\0014\2\3\0005\3\b\0>\3\1\2=\2\a\0019\1\5\0009\1\t\0014\2\4\0009\3\n\0'\5\v\0'\6\f\0'\a\r\0B\3\4\2>\3\1\0029\3\n\0'\5\14\0'\6\15\0'\a\16\0B\3\4\2>\3\2\0029\3\n\0'\5\17\0'\6\18\0'\a\19\0B\3\4\0?\3\0\0=\2\a\1K\0\1\0\f:qa<cr>\14quit nvim\6q#:e ~/.config/nvim/init.lua<cr>\18neovim config\6v :ene <bar> startinsert <cr>\rnew file\6e\vbutton\19bottom_buttons\1\0\2\bval\3\0\ttype\fpadding\bval\fmru_cwd\fsection\topts\26alpha.themes.startify\nsetup\nalpha\frequire\a€€À™\4\0", "config", "alpha-nvim")
 time([[Config for alpha-nvim]], false)
 if should_profile then save_profiles() end
 
