@@ -1,8 +1,15 @@
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'
 
+
+  -- THEMES --
   use({ 'catppuccin/nvim', as = 'catppuccin' })
 
+  use 'navarasu/onedark.nvim'
+
+
+
+  -- GENERALS --
   use { 'goolord/alpha-nvim',
     requires = { 'kyazdani42/nvim-web-devicons' },
     config = function()
@@ -17,9 +24,12 @@ require('packer').startup(function()
     end
   }
 
-  use {
-    'romgrk/barbar.nvim',
-    requires = {'kyazdani42/nvim-web-devicons'}
+  use { 'nvim-lualine/lualine.nvim',
+    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+  }
+
+  use {'nvim-telescope/telescope.nvim',
+    requires = { {'nvim-lua/plenary.nvim'} }
   }
 
   vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
@@ -28,16 +38,18 @@ require('packer').startup(function()
     branch = "v2.x",
     requires = {
       "nvim-lua/plenary.nvim",
-      "kyazdani42/nvim-web-devicons", -- not strictly required, but recommended
+      "kyazdani42/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     }
   }
 
-  use { 'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-  }
+use { 'romgrk/barbar.nvim',
+  requires = {'kyazdani42/nvim-web-devicons'}
+}
 
 
+
+  -- IDE EXPERIENCE --
   use 'nvim-treesitter/nvim-treesitter'
 
   use 'neovim/nvim-lspconfig'
@@ -51,9 +63,4 @@ require('packer').startup(function()
 
   use 'hrsh7th/cmp-vsnip'
   use 'hrsh7th/vim-vsnip'
-
-  use {
-    'nvim-telescope/telescope.nvim',
-    requires = { {'nvim-lua/plenary.nvim'} }
-  }
 end)

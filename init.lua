@@ -3,8 +3,8 @@
 --  packer:           yay -S nvim-packer-git
 --  xclip:            yay -S xclip
 --  git, curl or wget, unzip, tar, gzip, npm 
---  https://github.com/sindresorhus/guides/blob/main/npm-global-without-sudo.md
-
+--  install npm via nvm: https://github.com/nvm-sh/nvm
+--  ----> nvm install node:Neotree right toggle
 
 
 require('keybindings')
@@ -43,16 +43,32 @@ catppuccin.setup{
   }
 }
 vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-vim.cmd [[colorscheme catppuccin]]
+vim.cmd[[colorscheme catppuccin]]
 
+
+
+
+-- ONE DARK
+require('onedark').setup {
+  -- Options: dark, darker, cool, deep, warm, warmer, light
+  style = 'darker'
+}
+--require('onedark').load()
+
+
+
+
+-- WEB-DEVICONS
+require'nvim-web-devicons'.setup{}
 
 
 
 -- BARBAR
-require'bufferline'.setup {
-  animation = true,
+require("bufferline").setup{
   auto_hide = true,
+  tabpages = false
 }
+
 
 
 -- LUALINE
@@ -61,30 +77,12 @@ require('lualine').setup {
     icons_enabled = true,
     theme = 'auto',
   },
-  theme = "catppuccin"
 }
 
 
 
-
--- NEO TREE
-require("neo-tree").setup({
-  close_if_last_window = true,
-  popup_border_style = "rounded",
-  enable_diagnostics = true,
-  filesystem = {
-    window = {
-      mappings = {
-        ["<bs>"] = "navigate_up",
-        ["."] = "set_root",
-        ["H"] = "toggle_hidden",
-        ["/"] = "fuzzy_finder",
-        ["f"] = "filter_on_submit",
-        ["<c-x>"] = "clear_filter",
-      }
-    }
-  },
-})
+-- NEO-TREE
+require("neo-tree").setup{}
 
 
 
@@ -128,7 +126,7 @@ cmp.setup({
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<C-e>'] = cmp.mapping.abort(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
   }),
   sources = cmp.config.sources({
     { name = 'nvim_lsp' },
@@ -188,7 +186,7 @@ for _, server in ipairs(lsp_installer.get_installed_servers()) do
       }
     }
 
-  else  
+  else
     lspconfig[server.name].setup {
       capabilities = capabilities;
     }
