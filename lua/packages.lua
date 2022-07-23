@@ -3,9 +3,11 @@ require('packer').startup(function()
 
 
   -- THEMES --
-  use({ 'catppuccin/nvim', as = 'catppuccin' })
 
   use 'navarasu/onedark.nvim'
+  use { "ellisonleao/gruvbox.nvim" }
+
+
 
 
 

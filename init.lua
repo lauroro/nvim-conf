@@ -4,7 +4,7 @@
 --  xclip:            yay -S xclip
 --  git, curl or wget, unzip, tar, gzip, npm 
 --  install npm via nvm: https://github.com/nvm-sh/nvm
---  ----> nvm install node:Neotree right toggle
+--  ----> nvm install node
 
 
 require('keybindings')
@@ -14,47 +14,20 @@ require('config')
 
 
 
--- Cattpuccin
-local catppuccin = require("catppuccin")
-catppuccin.setup{
-  integrations = {
-    treesitter = true,
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = "italic",
-        hints = "italic",
-        warnings = "italic",
-        information = "italic",
-      },
-      underlines = {
-        errors = "underline",
-        hints = "underline",
-        warnings = "underline",
-        information = "underline",
-      },
-    },
-    telescope = false,
-    neotree = {
-      enabled = false,
-      show_root = true,
-      transparent_panel = false,
-    },
-  }
-}
-vim.g.catppuccin_flavour = "macchiato" -- latte, frappe, macchiato, mocha
-vim.cmd[[colorscheme catppuccin]]
-
-
-
 
 -- ONE DARK
 require('onedark').setup {
   -- Options: dark, darker, cool, deep, warm, warmer, light
   style = 'darker'
 }
---require('onedark').load()
+require('onedark').load()
 
+
+
+-- GRUV BOX
+require("gruvbox").setup{}
+--vim.o.background = "dark" -- or "light" for light mode
+--vim.cmd([[colorscheme gruvbox]])
 
 
 
