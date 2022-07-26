@@ -5,9 +5,6 @@ require('packer').startup(function()
   -- THEMES --
 
   use 'navarasu/onedark.nvim'
-  use { "ellisonleao/gruvbox.nvim" }
-
-
 
 
 
